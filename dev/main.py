@@ -6,3 +6,9 @@ def new_card():
     number = cards[random.randint(0, 10)]
     return number
 print(new_card())
+
+def dealer_card():
+    number = cards[random.randint(0, 10)]
+    return number
+print(dealer_card())
+print(dealer_card())
