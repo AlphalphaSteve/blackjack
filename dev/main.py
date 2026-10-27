@@ -1,4 +1,5 @@
 import random
+
 print("Hello gambling!")
 cards = [1,2,3,4,5,6,7,8,9,10,11]
 
@@ -27,6 +28,7 @@ print(new_card())
 def dealer_card():
     number = cards[random.randint(0, 10)]
     return number
+
 dealer_first_hand = dealer_card() + dealer_card()
 player_first_hand = new_card() + new_card()
 print("Your first hand total is: " + str(player_first_hand))
