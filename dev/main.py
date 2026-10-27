@@ -24,7 +24,7 @@ while True :
     hit = input("Would you like to hit or stay? ")
     if hit.lower() == "hit" :
         player_total += new_card()
-        if player_total >= 21:
+        if player_total > 21:
             print(f"You busted with a total of {player_total} game over!")
             break
         else:
@@ -32,3 +32,15 @@ while True :
     else:
         print("Okay so you've decided to stay.")
         break
+    if dealer_total > 16:
+        print("The dealer stands at a visible total of: " + str(dealer_total_pub))
+    elif dealer_total <= 16:
+        card1 = new_card()
+        dealer_total += card1
+        dealer_total_pub += card1
+        if dealer_total > 21:
+            print("The dealer busted at a full total of: " + str(dealer_total))
+            print("You win!")
+            break
+        else:
+            print("The dealer hits to a new visible total of: " + str(dealer_total_pub))
