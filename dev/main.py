@@ -15,21 +15,21 @@ while True :
     if player_total == 0:
         player_total += new_card()
         player_total += new_card()
-        print("Your starting total is: " + str(player_total))
+        print(f"Your starting total is: {player_total}")
     if dealer_total == 0:
         card1 = new_card()
         dealer_total += card1
         dealer_total_pub += card1
         dealer_total += new_card()
-        print("The dealer has a face up total of: " + str(dealer_total_pub))
+        print(f"The dealer has a face up total of: {dealer_total_pub}")
     hit = input("Would you like to hit or stay? ")
-    if hit == "hit" or hit == "Hit" or hit == "HIT" :
+    if hit.lower() == "hit" :
         player_total += new_card()
         if player_total >= 21:
-            print("You busted with a total of " + str(player_total) + " game over!")
+            print(f"You busted with a total of {player_total} game over!")
             break
         else:
-            print("You have a total of: " + str(player_total))
+            print(f"You have a total of: {player_total}")
     else:
         print("Okay so you've decided to stay.")
         break
@@ -43,5 +43,5 @@ def dealer_card():
 
 dealer_first_hand = dealer_card() + dealer_card()
 player_first_hand = new_card() + new_card()
-print("Your first hand total is: " + str(player_first_hand))
+print(f"Your first hand total is: {player_first_hand}")
 hit_or_stay = input("Would you like to hit or stay?")
