@@ -21,9 +21,21 @@ while True :
         dealer_total_pub += card1
         dealer_total += new_card()
         print("The dealer has a face up total of: " + str(dealer_total_pub))
-    break
+    hit = input("Would you like to hit or stay? ")
+    if hit == "hit" or hit == "Hit" or hit == "HIT" :
+        player_total += new_card()
+        if player_total >= 21:
+            print("You busted with a total of " + str(player_total) + " game over!")
+            break
+        else:
+            print("You have a total of: " + str(player_total))
+    else:
+        print("Okay so you've decided to stay.")
+        break
 print(new_card())
 
+
+#do you want to use this or the while loop I made? -Cory
 def dealer_card():
     number = cards[random.randint(0, 10)]
     return number
