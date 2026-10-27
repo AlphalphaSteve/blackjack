@@ -1,10 +1,10 @@
 import random
 
-cards = [1,2,3,4,5,6,7,8,9,10,11]
+from cards import Cards
+
 
 def new_card():
-    number = cards[random.randint(0, 10)]
-    return number
+    return random.choice(list(Cards)).card_value
 
 player_total = 0
 dealer_total = 0
