@@ -30,7 +30,6 @@ while True :
             print(f"You have a total of: {player_total}")
     else:
         print("Okay so you've decided to stay.")
-        break
     if dealer_total > 16:
         print("The dealer stands at a visible total of: " + str(dealer_total_pub))
     elif dealer_total <= 16:
