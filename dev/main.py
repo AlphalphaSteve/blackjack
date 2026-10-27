@@ -13,8 +13,7 @@ dealer_total_pub = 0
 
 while True :
     if player_total == 0:
-        player_total += new_card()
-        player_total += new_card()
+        player_total += new_card() + new_card()
         print(f"Your starting total is: {player_total}")
     if dealer_total == 0:
         card1 = new_card()
@@ -33,15 +32,3 @@ while True :
     else:
         print("Okay so you've decided to stay.")
         break
-print(new_card())
-
-
-#do you want to use this or the while loop I made? -Cory
-def dealer_card():
-    number = cards[random.randint(0, 10)]
-    return number
-
-dealer_first_hand = dealer_card() + dealer_card()
-player_first_hand = new_card() + new_card()
-print(f"Your first hand total is: {player_first_hand}")
-hit_or_stay = input("Would you like to hit or stay?")
