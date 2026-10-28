@@ -47,7 +47,7 @@ while True :
                     print("Unfortunately the dealer won with a total of: " + str(dealer_total) + ". And you lost with a total of: " + str(player_total))
                     break
                 else:
-                    print("It's a tie looks like you need to go again!")
+                    print("It's a tie looks like you need to go again! " + str(player_total) + " " + str(dealer_total))
                     player_total = 0
                     dealer_total = 0
                     dealer_total_pub = 0
