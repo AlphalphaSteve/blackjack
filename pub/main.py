@@ -1,65 +1,72 @@
 import random
 
-cards = [1,2,3,4,5,6,7,8,9,10,11]
+from cards import Cards
+
 
 def new_card():
-    number = cards[random.randint(0, 10)]
-    return number
+    return random.choice(list(Cards))
 
-player_total = 0
-dealer_total = 0
+def get_total(card_list):
+    total = 0
+    for card in card_list:
+        total += card.card_value
+    return total
+
+player_cards = []
+dealer_cards = []
 dealer_total_pub = 0
 player_stay = False
 dealer_stay = False
 
 while True :
-    if player_total == 0:
-        player_total += new_card() + new_card()
-        print(f"Your starting total is: {player_total}")
-    if dealer_total == 0:
+    if get_total(player_cards) == 0:
+        player_cards.append(new_card)
+        player_cards.append(new_card)
+        print(f"Your starting total is: {get_total(player_cards)}")
+    if get_total(dealer_cards) == 0:
         card1 = new_card()
-        dealer_total += card1
-        dealer_total_pub += card1
-        dealer_total += new_card()
+        dealer_cards.append(card1)
+        dealer_total_pub += card1.card_value
+        dealer_cards.append(new_card())
         print(f"The dealer has a face up total of: {dealer_total_pub}")
     hit = input("Would you like to hit or stay? ")
     if hit.lower() == "hit" :
-        player_total += new_card()
+        player_cards.append(new_card())
         player_stay = False
-        if player_total > 21:
-            print(f"You busted with a total of {player_total} game over!")
+        if get_total(player_cards) > 21:
+            print(f"You busted with a total of {get_total(player_cards)} game over!")
             break
         else:
-            print(f"You have a total of: {player_total}")
+            print(f"You have a total of: {get_total(player_cards)}")
     else:
         print("Okay so you've decided to stay.")
         player_stay = True
-    if dealer_total > 16:
+    if get_total(dealer_cards) > 16:
         print("The dealer stands at a visible total of: " + str(dealer_total_pub))
         dealer_stay = True
         if player_stay == True and dealer_stay == True:
             finish = input("Would you like both you and the dealer to show their cards? ")
             if finish.lower() == "yes" or finish.lower() == "y":
-                if player_total > dealer_total:
-                    print("Great job you win with a total of: " + str(player_total) + ". And the dealer looses with a total of: " + str(dealer_total))
+                if get_total(player_cards) > get_total(dealer_cards):
+                    print("Great job you win with a total of: " + str(get_total(player_cards)) + ". And the dealer looses with a total of: " + str(get_total(dealer_cards)))
                     break
-                if player_total < dealer_total:
-                    print("Unfortunately the dealer won with a total of: " + str(dealer_total) + ". And you lost with a total of: " + str(player_total))
+                if get_total(player_cards) < get_total(dealer_cards):
+                    print("Unfortunately the dealer won with a total of: " + str(get_total(dealer_cards)) + ". And you lost with a total of: " + str(get_total(player_cards)))
                     break
                 else:
-                    print("It's a tie looks like you need to go again! " + str(player_total) + " " + str(dealer_total))
-                    player_total = 0
-                    dealer_total = 0
+                    print("It's a tie looks like you need to go again! " + str(get_total(player_cards)) + " " + str(get_total(dealer_cards)))
+                    player_cards = []
+                    dealer_cards = []
                     dealer_total_pub = 0
                     player_stay = False
                     dealer_stay = False
-    elif dealer_total <= 16:
+    elif get_total(dealer_cards) <= 16:
         card1 = new_card()
         dealer_stay = False
-        dealer_total += card1
-        dealer_total_pub += card1
-        if dealer_total > 21:
-            print("The dealer busted at a full total of: " + str(dealer_total))
+        dealer_cards.append(card1)
+        dealer_total_pub += card1.card_value
+        if get_total(dealer_cards) > 21:
+            print("The dealer busted at a full total of: " + str(get_total(dealer_cards)))
             print("You win!")
             break
         else:
