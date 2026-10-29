@@ -20,8 +20,8 @@ dealer_stay = False
 
 while True :
     if get_total(player_cards) == 0:
-        player_cards.append(new_card)
-        player_cards.append(new_card)
+        player_cards.append(new_card())
+        player_cards.append(new_card())
         print(f"Your starting total is: {get_total(player_cards)}")
     if get_total(dealer_cards) == 0:
         card1 = new_card()
